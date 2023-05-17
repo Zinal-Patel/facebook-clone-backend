@@ -33,14 +33,16 @@ app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
 app.use(Helmet());
 app.use(Morgan("common"));
-app.use(cors({
-  origin: ["https://facebook-clone-frontend-9q4h.onrender.com/"]
-}));
+app.use(cors());
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 // console.log(__filename)
 // console.log(__dirname)
 app.use("/images", Express.static(path.join(__dirname, "/public/images")));
+
+
 const storage = multer.diskStorage({
                                     destination:(req, file, cb)=>{
                                         //the destination where we want to save/store the file
