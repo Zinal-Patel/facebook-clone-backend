@@ -75,7 +75,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 //When we got to "/api/users" address, "userRoutes" will run
 app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)
-app.use("/api/posts", postRoute)
+app.use("posts", postRoute)
 
 
 app.use((req, res, next) => {
