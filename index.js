@@ -27,20 +27,20 @@ Dotenv.config();
 Mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Mongoose Connected")}).catch((err)=>{console.log("Error:" + err.response)})
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-// console.log(__filename)
-// console.log(__dirname)
-app.use("/images", Express.static(path.join("https://facebookclone-vv1k.onrender.com/", "/public/images")));
+
 // middleware
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
 app.use(Helmet());
 app.use(Morgan("common"));
 app.use(cors({
-  origin: ["http://localhost:3000/", "https://facebook-clone-frontend-9q4h.onrender.com/"]
+  origin: ["https://facebook-clone-frontend-9q4h.onrender.com/"]
 }));
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// console.log(__filename)
+// console.log(__dirname)
+app.use("/images", Express.static(path.join(__dirname, "/public/images")));
 const storage = multer.diskStorage({
                                     destination:(req, file, cb)=>{
                                         //the destination where we want to save/store the file
