@@ -14,6 +14,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const app = new Express();
+const PORT =  process.env.PORT || 8008;
 
 // reads the .env file
 Dotenv.config();
@@ -86,8 +87,8 @@ app.use((req, res, next) => {
 
 
 
-app.listen(8008, ()=> {
-    console.log("backend server is running")
+app.listen(PORT, ()=> {
+    console.log("backend server is running. Server started on" + PORT)
 });
 
 //GET request
