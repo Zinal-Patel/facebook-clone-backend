@@ -26,11 +26,11 @@ Dotenv.config();
 Mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Mongoose Connected")}).catch((err)=>{console.log("Error:" + err.response)})
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    // console.log(__filename)
-    console.log(__dirname)
-    app.use("/images", Express.static(path.join(__dirname, "/public/images")));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// console.log(__filename)
+console.log(__dirname)
+app.use("/images", Express.static(path.join(__dirname, "/public/images")));
 // middleware
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
@@ -86,8 +86,7 @@ app.use((req, res, next) => {
 
 
 
-
-app.listen(8008, ()=> {
+app.listen("https://facebookclone-vv1k.onrender.com/api", ()=> {
     console.log("backend server is running")
 });
 
