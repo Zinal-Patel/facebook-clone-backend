@@ -37,7 +37,9 @@ app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
 app.use(Helmet());
 app.use(Morgan("common"));
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000/", "https://facebook-clone-frontend-9q4h.onrender.com/"]
+}));
 
 const storage = multer.diskStorage({
                                     destination:(req, file, cb)=>{
