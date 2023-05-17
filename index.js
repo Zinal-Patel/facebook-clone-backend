@@ -30,8 +30,8 @@ Mongoose.connect(process.env.MONGO_URL).then(() => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 // console.log(__filename)
-console.log(__dirname)
-app.use("/images", Express.static(path.join(__dirname, "/public/images")));
+// console.log(__dirname)
+app.use("/images", Express.static(path.join("https://facebookclone-vv1k.onrender.com/", "/public/images")));
 // middleware
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
