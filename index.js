@@ -86,7 +86,7 @@ app.use((req, res, next) => {
 
 
 
-app.listen("https://facebookclone-vv1k.onrender.com/api", ()=> {
+app.listen(8008, ()=> {
     console.log("backend server is running")
 });
 
