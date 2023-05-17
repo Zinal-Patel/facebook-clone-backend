@@ -73,9 +73,10 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 
 //When we got to "/api/users" address, "userRoutes" will run
-app.use("/api/users", userRoute)
-app.use("/api/auth", authRoute)
-app.use("posts", postRoute)
+// app.use("/api/users", userRoute)
+app.use("/users", userRoute)
+app.use("/auth", authRoute)
+app.use("/posts", postRoute)
 
 
 app.use((req, res, next) => {
@@ -92,7 +93,7 @@ app.listen(PORT, ()=> {
 });
 
 // GET request
-app.get("/", (req, res) => {
-    res.send("welcome to homepage")
-})
+// app.get("/", (req, res) => {
+//     res.send("welcome to homepage")
+// })
 
