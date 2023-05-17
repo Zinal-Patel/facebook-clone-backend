@@ -91,8 +91,8 @@ app.listen(PORT, ()=> {
     console.log("backend server is running. Server started on PORT " + PORT)
 });
 
-//GET request
-// app.get("/", (req, res) => {
-//     res.send("welcome to homepage")
-// })
+// GET request
+app.get("/", (req, res) => {
+    res.send("welcome to homepage")
+})
 
