@@ -88,7 +88,7 @@ app.use((req, res, next) => {
 
 
 app.listen(PORT, ()=> {
-    console.log("backend server is running. Server started on" + PORT)
+    console.log("backend server is running. Server started on PORT " + PORT)
 });
 
 //GET request
