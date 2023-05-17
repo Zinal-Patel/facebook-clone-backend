@@ -33,7 +33,17 @@ app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
 app.use(Helmet());
 app.use(Morgan("common"));
-app.use(cors());
+
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+});
+const corsOptions = {
+  origin: 'https://facebook-clone-frontend-9q4h.onrender.com/', 
+  methods: ['GET', 'POST'], 
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -84,10 +94,7 @@ app.use("/auth", authRoute)
 app.use("/posts", postRoute)
 
 
-app.use((req, res, next) => {
-    res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
-    next();
-  });
+
 //When the request path is "/images" we want "public/images" directory to open
 
 
