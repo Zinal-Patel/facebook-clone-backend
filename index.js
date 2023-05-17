@@ -39,7 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 const corsOptions = {
-  origin: 'https://facebook-clone-project.onrender.com/', 
+  origin: 'https://facebook-clone-frontend-9q4h.onrender.com/', 
   methods: ['GET', 'POST'], 
   allowedHeaders: ['Content-Type', 'Authorization']
 };
