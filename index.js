@@ -38,12 +38,13 @@ app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
-const corsOptions = {
-  origin: 'https://facebookclone-vv1k.onrender.com/', 
-  methods: ['GET', 'POST'], 
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'https://facebookclone-vv1k.onrender.com/', 
+//   // origin: 'https://facebook-clone-project.onrender.com/', 
+//   methods: ['GET', 'POST'], 
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// };
+app.use(cors());
 
 
 const __filename = fileURLToPath(import.meta.url);
