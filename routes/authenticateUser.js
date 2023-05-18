@@ -94,10 +94,10 @@ export const authenticateToken = (req, res, next) => {
 };
 
 // Protected route
-app.get('/protected', authenticateToken, (req, res) => {
-  // Access the authenticated user via req.user
-  res.json({ message: 'This is a protected route', user: req.user });
-});
+// app.get('/protected', authenticateToken, (req, res) => {
+//   // Access the authenticated user via req.user
+//   res.json({ message: 'This is a protected route', user: req.user });
+// });
 
 
 export default router;
