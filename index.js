@@ -13,6 +13,7 @@ import postRoute from "./routes/posts.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
+
 const app = new Express();
 const PORT =  process.env.PORT || 8008;
 
@@ -20,9 +21,9 @@ const PORT =  process.env.PORT || 8008;
 Dotenv.config();
 
 //accesses the variable from .env file using "process.env.VARIBLE_NAME"
-// Connecting to Mongoose
-// Mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}, () => {
-//     console.log(connected)});
+//Connecting to Mongoose
+//Mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}, () => {
+//console.log(connected)});
 
 Mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Mongoose Connected")}).catch((err)=>{console.log("Error:" + err.response)})
@@ -49,8 +50,6 @@ app.use(cors());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// console.log(__filename)
-// console.log(__dirname)
 app.use("/images", Express.static(path.join(__dirname, "/public/images")));
 
 
@@ -65,7 +64,7 @@ const storage = multer.diskStorage({
                                     }
 })
 const upload = multer({ storage });
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post("/upload", upload.single("file"), (req, res) => {
 
     try{  
                 // Return a response indicating success or failure
