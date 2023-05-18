@@ -2,6 +2,7 @@ import Express from "express";
 // "bcrypt" library allows us to encrypt passwords
 import bcrypt from "bcrypt";
 import userCollection from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 const router = Express.Router();
 
@@ -44,7 +45,9 @@ router.post("/login", async (req, res) => {
         //Checking Username: 
             // The email we recieved from post request, we will find that email in the collection.
             // It returns the entire document of the user is the email is found and we are storing it in the variable "checkUser".
-            const checkUser = await userCollection.findOne({email : req.body.email});
+            // const uname = req.body.email;
+            // const u = { name: uname }
+            const checkUser = await userCollection.findOne({email : uname});
             // If checkUser is false or not found in the collection then we respond with 404 status.
             !checkUser && res.status(404).json("user not found");
 
@@ -55,8 +58,12 @@ router.post("/login", async (req, res) => {
             //If password is not valid, we return 400 status.
             !ispasswordValid && res.status(400).json("In valid password");
 
+            const uname = req.body.email;
+            const user = { name: uname };
+            const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
         // If email and password are valid, we will respond the user.
-            res.status(200).json(checkUser)
+        // res.status(200).json(checkUser)
+        res.status(200).json(accessToken)
            
     }
     catch(err){
@@ -64,6 +71,33 @@ router.post("/login", async (req, res) => {
     }
 })
 
+
+// Middleware to verify JWT
+export const authenticateToken = (req, res, next) => {
+
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split("")[1];
+  
+//   const token = req.headers.authorization
+
+  if (token) {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+      if (err) {
+        return res.sendStatus(403); // Invalid token
+      }
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401); // No token provided
+  }
+};
+
+// Protected route
+app.get('/protected', authenticateToken, (req, res) => {
+  // Access the authenticated user via req.user
+  res.json({ message: 'This is a protected route', user: req.user });
+});
 
 
 export default router;
