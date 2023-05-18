@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
             // It returns the entire document of the user is the email is found and we are storing it in the variable "checkUser".
             // const uname = req.body.email;
             // const u = { name: uname }
-            const checkUser = await userCollection.findOne({email : uname});
+            const checkUser = await userCollection.findOne({email : req.body.email});
             // If checkUser is false or not found in the collection then we respond with 404 status.
             !checkUser && res.status(404).json("user not found");
 
