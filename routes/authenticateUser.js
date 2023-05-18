@@ -66,32 +66,6 @@ router.post("/login", async (req, res) => {
 })
 
 
-// Middleware to verify JWT
-export const authenticateToken = (req, res, next) => {
-
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split("")[1];
-  
-//   const token = req.headers.authorization
-
-  if (token) {
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if (err) {
-        return res.sendStatus(403); // Invalid token
-      }
-      req.user = user;
-      next();
-    });
-  } else {
-    res.sendStatus(401); // No token provided
-  }
-};
-
-// Protected route
-app.get('/protected', authenticateToken, (req, res) => {
-  // Access the authenticated user via req.user
-  res.json({ message: 'This is a protected route', user: req.user });
-});
 
 
 export default router;
