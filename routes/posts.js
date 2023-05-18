@@ -1,7 +1,7 @@
 import Express from "express";
 import postCollection from "../models/postModel.js";
 import userCollection from "../models/userModel.js";
-import {authenticateToken} from "auth.js";
+
 const router = Express.Router();
 
 //CREATE a post
@@ -115,7 +115,7 @@ router.get("/:id", async (req, res) => {
 
 
 //GET timeline posts
-router.get("/timeline/:userId", authenticateToken, async (req, res) => {
+router.get("/timeline/:userId", async (req, res) => {
             
     try{
         //We will get the user using the userId from req body

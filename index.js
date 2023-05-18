@@ -12,7 +12,6 @@ import authRoute from "./routes/authicateUser.js";
 import postRoute from "./routes/posts.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import jwt from "jsonwebtoken";
 
 
 const app = new Express();
